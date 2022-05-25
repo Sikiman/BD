@@ -1,0 +1,38 @@
+<div class="container type-header" *ngIf="dataLoaded | async">
+    <div class="row">
+        <h4 class="col">{{type.name}}</h4>
+        <p class="col">Description: {{typeDescription}}</p>
+        <div class="btn-group extra-margin extra-margin col" role="group">
+            <button type="button" class="btn btn-warning" [routerLink]="['/panel/item/insert', id]">Edit</button>
+            <button type="button" class="btn btn-danger" [routerLink]="['']">Delete</button>
+        </div>
+    </div>
+    <div class="row">
+        <p class="col">ID: {{type.id}}</p>
+    </div>
+</div>
+<div class="btn-group extra-margin extra-margin" role="group">
+    <button type="button" class="btn btn-success" [routerLink]="['/panel/item/insert', id]">Create</button>
+    <button type="button" class="btn btn-warning" [routerLink]="['']">Edit</button>
+    <button type="button" class="btn btn-danger" [routerLink]="['']">Delete</button>
+</div>
+
+<table class="table table-bordered table-striped table-hover table-sm">
+    <thead>
+        <tr>
+            <th scope="col" class="col-1"><input class="form-check-input me-1" type="checkbox" value=""
+                    aria-label="..."></th>
+            <th scope="col" class="col-1">#</th>
+            <th scope="col" class="col-5">Name</th>
+            <th scope="col" class="col-5">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items, let i = index" [routerLink]="['/panel/item/details', item.id]">
+            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="..."></td>
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>#</td>
+        </tr>
+    </tbody>
+</table>
