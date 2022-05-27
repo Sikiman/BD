@@ -1,0 +1,42 @@
+<div class="col-6 container" *ngIf="dataLoaded | async">
+    <table class="table table-striped table-hover table-borderless table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <br>
+        <tbody>
+            <tr>
+                <th>Name:</th>
+                <td>{{item.name}}</td>
+            </tr>
+            <tr>
+                <th>ID:</th>
+                <td>{{item.id}}</td>
+            </tr>
+            <tr>
+                <th>Type:</th>
+                <td>{{type.name}}</td>
+            </tr>
+            <tr>
+                <th>Type ID:</th>
+                <td>{{item.typeId}}</td>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td *ngIf="item.status == null"></td>
+                <td *ngIf="item.status == ''"></td>
+                <td *ngIf="item.status == 'Active'" class="table-info">Active</td>
+                <td *ngIf="item.status == 'Disabled'" class="table-danger">Disabled</td>
+                <td *ngIf="item.status == 'Maintenance'" class="table-warning">Maintenance</td>
+            </tr>
+            <br>
+            <tr *ngFor="let st of type.structure, let i = index">
+                <th>{{st.name}}</th>
+                <td>{{getInfo(st.name)}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

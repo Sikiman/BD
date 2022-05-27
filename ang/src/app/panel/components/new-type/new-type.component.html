@@ -1,0 +1,35 @@
+<div class="col-5 container">
+    <h4>Creating new Type</h4>
+
+    <div class="btn-group extra-margin" role="group">
+        <button type="button" class="btn btn-success" (click)="onSave()" [routerLink]="['']">Save</button>
+        <button type="button" class="btn btn-danger" [routerLink]="['']">Cancel</button>
+    </div>
+
+    <div class="row g-1">
+
+        <div class="input-group">
+            <span class="input-group-text">Name</span>
+            <input type="text" class="form-control" id="inputName">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text">Description</span>
+            <textarea id="description" name="description" class="form-control"></textarea>
+        </div>
+
+        <h6>Structure of Type:</h6>
+        <div class="input-group" *ngFor="let st of structure, let i = index">
+            <span class="input-group-text">{{i+1}}</span>
+            <input type="text" class="form-control" id={{st.inputKeyName}}>
+            <select class="form-select" id={{st.inputValueName}}>
+                <option selected value="">Select data type</option>
+                <option value="text">Text</option>
+                <option value="number">Number</option>
+                <option value="date">Date</option>
+                <option value="time">Time</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="addSt()">Add structure entry</button>
+    </div>
+</div>

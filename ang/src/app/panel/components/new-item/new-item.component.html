@@ -1,0 +1,55 @@
+<div *ngIf="dataLoaded | async">
+    <div class="col-6 container">
+        <h4>Creating new item</h4>
+
+        <div class="row justify-content-around">
+
+            <div class="col-6">
+                <div class="btn-group extra-margin" role="group">
+                    <button type="button" class="btn btn-success" (click)="onSave()"
+                        [routerLink]="['/panel/items', id]">Save</button>
+                    <button type="button" class="btn btn-danger" [routerLink]="['/panel/items', id]">Cancel</button>
+                </div>
+            </div>
+
+            <div class="col-6">
+
+                <div class="input-group">
+                    <span class="input-group-text">Copy from: </span>
+                    <select class="form-select" id="inputCopyItem">
+                        <option selected value="">Select item</option>
+                        <option value={{i}} *ngFor="let item of items, let i = index">{{item.name}}</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" (click)="copyFrom()">Apply</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="input-group">
+            <span class="input-group-text">Name</span>
+            <input type="text" class="form-control" id="inputName">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text">Status</span>
+            <select class="form-select" id="inputStatus">
+                <option selected value="">Select status</option>
+                <option value="Active">Active</option>
+                <option value="Disabled">Disabled</option>
+                <option value="Maintenance">Maintenance</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div class="input-group" *ngFor="let st of structure">
+            <span class="input-group-text">{{st.name}}</span>
+            <input type={{st.type}} class="form-control" id={{st.inputName}}>
+        </div>
+
+    </div>
+</div>

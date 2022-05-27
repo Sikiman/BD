@@ -1,0 +1,46 @@
+<div class="col-6 container">
+    <h4>Creating new user</h4>
+
+    <div class="btn-group extra-margin" role="group">
+        <button type="button" class="btn btn-success" (click)="onSave()"
+            [routerLink]="['/panel/users']">Save</button>
+        <button type="button" class="btn btn-danger" [routerLink]="['/panel/users']">Cancel</button>
+    </div>
+
+    <div class="row g-1">
+
+        <div class="input-group">
+            <span class="input-group-text">Name</span>
+            <input type="text" class="form-control" id="inputName">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text">Username</span>
+            <input type="text" class="form-control" id="inputUsername">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text">Password</span>
+            <input type="password" class="form-control" id="inputPassword">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text">Confirm password</span>
+            <input type="password" class="form-control" id="inputConfirmPassword">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text">Role</span>
+            <select class="form-select" id="inputRole">
+                <option selected value="User">User</option>
+                <option value="Administrator">Administrator</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-text">Persmissions</span>
+            <input type="text" class="form-control" id="inputPermissions">
+        </div>
+
+    </div>
+</div>

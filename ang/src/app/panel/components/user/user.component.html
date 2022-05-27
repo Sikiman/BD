@@ -1,0 +1,74 @@
+<div *ngIf="dataLoaded | async">
+    <div class="container type-header">
+        <div class="row">
+            <h4 class="col">Administration panel</h4>
+        </div>
+        <div class="row">
+            <h5 class="col">Users:</h5>
+        </div>
+    </div>
+
+    <div class="col-8 container">
+
+        <div class="btn-group extra-margin extra-margin" role="group">
+            <button type="button" class="btn btn-success" [routerLink]="['/panel/user/insert']">Create</button>
+            <button type="button" class="btn btn-warning" [routerLink]="['/panel/user/edit', users[0].id]">Edit</button>
+            <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+                Filters
+            </button>
+        </div>
+
+
+        <div class="row extra-margin">
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <h6>Filters:</h6>
+                    <div class="col-5">
+                        <div class="input-group">
+                            <span class="input-group-text">Name</span>
+                            <input type="text" class="form-control" id="inputName">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Status</span>
+                            <select class="form-select" id="inputStatus">
+                                <option selected value="">Select status</option>
+                                <option value="Active">Active</option>
+                                <option value="Disabled">Disabled</option>
+                                <option value="Maintenance">Maintenance</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)="filter()">Apply filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered table-striped table-hover table-sm">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-1"><input class="form-check-input me-1" type="checkbox" value=""
+                            aria-label="..."></th>
+                    <th scope="col" class="col-1">#</th>
+                    <th scope="col" class="col-5">Name</th>
+                    <th scope="col" class="col-5">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users, let i = index">
+                    <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="..."></td>
+                    <td [routerLink]="['/panel/item/details', user.id]">{{i+1}}</td>
+                    <td [routerLink]="['/panel/item/details', user.id]">{{user.name}}</td>
+                    <td *ngIf="user.role == null" [routerLink]="['/panel/item/details', user.id]"></td>
+                    <td *ngIf="user.role == ''" [routerLink]="['/panel/item/details', user.id]"></td>
+                    <td *ngIf="user.role == 'Administrator'" class="table-info" [routerLink]="['/panel/item/details', user.id]">
+                        Administrator</td>
+                    <td *ngIf="user.role == 'User'" class="table-light" [routerLink]="['/panel/item/details', user.id]">
+                        User</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

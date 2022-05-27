@@ -1,0 +1,82 @@
+<div *ngIf="dataLoaded | async">
+    <div class="container type-header">
+        <div class="row">
+            <h4 class="col">{{type.name}}</h4>
+            <p class="col">Description: {{typeDescription}}</p>
+            <div class="btn-group extra-margin col" role="group">
+                <button type="button" class="btn btn-warning" [routerLink]="['/panel/item/insert', id]">Edit</button>
+                <button type="button" class="btn btn-danger" [routerLink]="['']">Delete</button>
+            </div>
+        </div>
+        <div class="row">
+            <p class="col">ID: {{type.id}}</p>
+        </div>
+    </div>
+
+    <div class="col-8 container">
+
+        <div class="btn-group extra-margin" role="group">
+            <button type="button" class="btn btn-success" [routerLink]="['/panel/item/insert', id]">Create</button>
+            <button type="button" class="btn btn-warning" [routerLink]="['/panel/item/edit', id]">Edit</button>
+            <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+                Filters
+            </button>
+        </div>
+
+
+        <div class="row extra-margin">
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <h6>Filters:</h6>
+                    <div class="col-5">
+                        <div class="input-group">
+                            <span class="input-group-text">Name</span>
+                            <input type="text" class="form-control" id="inputName">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Status</span>
+                            <select class="form-select" id="inputStatus">
+                                <option selected value="">Select status</option>
+                                <option value="Active">Active</option>
+                                <option value="Disabled">Disabled</option>
+                                <option value="Maintenance">Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="input-group" *ngFor="let st of structure, let i = index">
+                            <span class="input-group-text">{{st.name + ":"}}</span>
+                            <input type={{st.type}} class="form-control" id={{st.inputName}}>
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)="filter()">Apply filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered table-striped table-hover table-sm">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-1"><input class="form-check-input me-1" type="checkbox" value=""
+                            aria-label="..."></th>
+                    <th scope="col" class="col-1">#</th>
+                    <th scope="col" class="col-5">Name</th>
+                    <th scope="col" class="col-5">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items, let i = index">
+                    <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="..."></td>
+                    <td [routerLink]="['/panel/item/details', item.id]">{{i+1}}</td>
+                    <td [routerLink]="['/panel/item/details', item.id]">{{item.name}}</td>
+                    <td *ngIf="item.status == null" [routerLink]="['/panel/item/details', item.id]"></td>
+                    <td *ngIf="item.status == ''" [routerLink]="['/panel/item/details', item.id]"></td>
+                    <td *ngIf="item.status == 'Active'" class="table-info" [routerLink]="['/panel/item/details', item.id]">Active</td>
+                    <td *ngIf="item.status == 'Disabled'" class="table-danger" [routerLink]="['/panel/item/details', item.id]">Disabled</td>
+                    <td *ngIf="item.status == 'Maintenance'" class="table-warning" [routerLink]="['/panel/item/details', item.id]">Maintenance</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
