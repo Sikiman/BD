@@ -1,0 +1,22 @@
+<div *ngIf="dataLoaded | async">
+<h4>Updating item</h4>
+
+<div class="btn-group extra-margin" role="group">
+    <button type="button" class="btn btn-success" (click)="onSave()" [routerLink]="['/panel/items', type.id]">Save</button>
+    <button type="button" class="btn btn-danger" [routerLink]="['/panel/items', id]">Cancel</button>
+  </div>
+
+<div class="row g-1">
+
+    <div class="input-group extra-margin">
+        <span class="input-group-text">Name</span>
+        <input type="text" class="form-control" id="inputName" value="{{item.name}}">
+    </div>
+
+    <div class="input-group" *ngFor="let st of structure">
+        <span class="input-group-text">{{st.name + ":"}}</span>
+        <input type={{st.type}} class="form-control" id={{st.inputName}} value={{getInfo(st.name)}}>
+    </div>
+
+</div>
+</div>

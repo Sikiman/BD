@@ -1,0 +1,20 @@
+<h4>Creating new user</h4>
+
+<div class="btn-group extra-margin" role="group">
+    <button type="button" class="btn btn-success" (click)="onSave()" [routerLink]="['/panel/users', id]">Save</button>
+    <button type="button" class="btn btn-danger" [routerLink]="['/panel/users', id]">Cancel</button>
+  </div>
+
+<div class="row g-1">
+
+    <div class="input-group extra-margin">
+        <span class="input-group-text">Name</span>
+        <input type="text" class="form-control" id="inputName">
+    </div>
+
+    <div class="input-group" *ngFor="let st of structure">
+        <span class="input-group-text">{{st.name + ":"}}</span>
+        <input type={{st.type}} class="form-control" id={{st.inputName}}>
+    </div>
+
+</div>
